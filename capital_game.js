@@ -77,7 +77,7 @@ function onclickfunc(){
 
     actionStack.child(actionNum).set({
         action: 'insert',
-        showing: true,
+        applying: true,
         rowNum: rowNum_before_added
     });
     qnasRef.child(rowNum).set({
@@ -118,14 +118,14 @@ function selectRedo(){
     //
 }
 function selectClear(){
-    qnasRef.once('value', function(snapshot){
-        snapshot.forEach(function(childSnapshot){
-            childSnapshot.update({isDeleted: true});
-        });
-    });
+    for(var i=0;i<rowNum;i++){
+        var clearRef = database.ref("qnas/" + i);
+        clearRef.update({isDeleted: true});
+    }
     actionStack.child(actionNum).set({
         action: 'clear',
-        showing: true
+        applying: 'true',
+        rowNum: 'all'
     });
 }
 
