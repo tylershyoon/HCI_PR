@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Capital Game!</title>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="jquery/css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+    <link href="./capital_game.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Tangerine|Inconsolata|Droid+Sans" rel="stylesheet" type="text/css">
+
+  </head>
+  <body onLoad="document.getElementById('pr2__answer').focus();">
+    <!--Your HTML here-->
+    <script src="jquery/js/jquery-1.9.0.min.js"></script>
+    <script src="jquery/js/jquery-ui-1.10.0.custom.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+    <script src="./country_capital_pairs.js"></script>
+    <script src="./capital_game.js"></script>
+    <script>
+        $( function() {
+            var availableTags = getCountry();
+            $("#pr2__answer").keypress(function(e){
+                $( "#pr2__answer" ).autocomplete({
+                    source: availableTags,
+                    minLength: 2,
+                    select: function(event, ui){
+                        $("#pr2__submit").click();
+                    },
+                    close: function(e1){
+                        e1.target.value='';
+                    }
+                })
+                if(e.which == 13 && e.target.value!=''){
+                    onclickfunc();
+                }
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        window.onload = function what(){
+            document.getElementById('pr2__question').innerHTML = randomCountry_pageload;
+        };
+    </script>
+    <!--Your HTML here-->
+    <h1><nobr>Do you know the capital of this country?</nobr></h1>
+    <table cellpadding="5px" id="main__table">
+      <tr id='header'>
+        <td>Country</td>
+        <td>Capital</td>
+        <td>Answer</td>
+      </tr>
+      <tr>
+        <td id="pr2__question"> </td>
+        <td><input type="text" id="pr2__answer"></td>
+        <td><button type="button" onclick= "onclickfunc()" id="pr2__submit">See Answer</button></td>
+      </tr>
+      <tr>
+        <td colspan="3" id="filter">
+          <input type="radio" name="selector" id="filtera" value="All" onclick="selectFilter('filtera')">All
+          <input type="radio" name="selector" id="filterc" value="Corrects" onclick="selectFilter('filterc')">Correct Only
+          <input type="radio" name="selector" id="filterw" value="Wrongs" onclick="selectFilter('filterw')">Wrong Only
+          <br>
+          <input type="button" name="undo" id="pr3__undo" value="Undo" onclick="selectUndo()">
+          <input type="button" name="redo" id="pr3__redo" value="Redo" onclick="selectRedo()">
+          <input type="button" name="clear" id="pr3__clear" value="Clear" onclick="selectClear()">
+        </td>
+      </tr>
+    </table>
+  </body>
+
+</html>

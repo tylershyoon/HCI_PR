@@ -1,0 +1,14 @@
+functions
+ - randomNumber
+ - onclickfunc : button press after typing user answer
+ - selectFilter
+
+ - selectUndo
+ - selectRedo
+ - selectClear
+ - getCountry
+ - deleteButton(rowNum) : delete rownum row in html table.
+ - isCorrect : check whether the answer is correct.
+ Return boolean, real answer
+ - tableExpand : expand table by inserting html row tag into table tag
+

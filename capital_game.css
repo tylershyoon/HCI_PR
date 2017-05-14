@@ -1,0 +1,40 @@
+body {
+    background-color: #eee;
+    text-align: left;
+    margin: auto;
+    width: 50%;
+
+}
+h1 {
+    font-family: 'Droid Sans', serif;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+td {
+    text-align: left;
+    border-bottom: 1px solid black;
+}
+
+#header {
+    font-weight: bold;
+    border-bottom: 2px solid black;
+}
+
+.correct {
+    color: blue;
+
+}
+
+.wrong {
+    color: red;
+
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+/*your code here*/
