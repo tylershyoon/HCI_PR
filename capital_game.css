@@ -25,16 +25,25 @@ td {
 
 .correct {
     color: blue;
-
 }
 
 .wrong {
     color: red;
+}
 
+.correct_deleted {
+    color: blue;
+}
+
+.wrong_deleted {
+    color: red;
 }
 
 .strikethrough {
     text-decoration: line-through;
 }
 
+.countryhover{
+    cursor: pointer;
+}
 /*your code here*/

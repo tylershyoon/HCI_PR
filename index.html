@@ -29,7 +29,7 @@
                     close: function(e1){
                         e1.target.value='';
                     }
-                })
+                });
                 if(e.which == 13 && e.target.value!=''){
                     onclickfunc();
                 }
@@ -38,11 +38,25 @@
     </script>
     <script type="text/javascript">
         window.onload = function what(){
-            document.getElementById('pr2__question').innerHTML = randomCountry_pageload;
+            var country_on_load = randomCountry_pageload;
+            document.getElementById('pr2__question').innerHTML = country_on_load;
+            document.getElementById('map').setAttribute("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDs0oJ1XbVWWj4vayCJMIk4yzUh03e2oPY&q="+ country_on_load + "&maptype=satellite");
+            tableReload();
         };
+        function questionclick(){
+            var country = document.getElementById('pr2__question').innerHTML;
+            if (country=="Côte d'Ivoire"){
+                country = "cote divoire";
+            }
+            document.getElementById('map').setAttribute("src", "https://www.google.com/maps/embed/v1/place?key=AIzaSyDs0oJ1XbVWWj4vayCJMIk4yzUh03e2oPY&q="+ country + "&maptype=satellite");
+        }
+    </script>
+    <script>
+      document.addEventListener('keyup', undoredoShortcuts, false);
     </script>
     <!--Your HTML here-->
     <h1><nobr>Do you know the capital of this country?</nobr></h1>
+    <iframe id="map" width="100%" height="400px" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDs0oJ1XbVWWj4vayCJMIk4yzUh03e2oPY&q=korea&maptype=satellite" frameborder="0"></iframe>
     <table cellpadding="5px" id="main__table">
       <tr id='header'>
         <td>Country</td>
@@ -50,7 +64,7 @@
         <td>Answer</td>
       </tr>
       <tr>
-        <td id="pr2__question"> </td>
+        <td id="pr2__question" class="countryhover" onclick="questionclick()"> </td>
         <td><input type="text" id="pr2__answer"></td>
         <td><button type="button" onclick= "onclickfunc()" id="pr2__submit">See Answer</button></td>
       </tr>
@@ -60,11 +74,12 @@
           <input type="radio" name="selector" id="filterc" value="Corrects" onclick="selectFilter('filterc')">Correct Only
           <input type="radio" name="selector" id="filterw" value="Wrongs" onclick="selectFilter('filterw')">Wrong Only
           <br>
-          <input type="button" name="undo" id="pr3__undo" value="Undo" onclick="selectUndo()">
-          <input type="button" name="redo" id="pr3__redo" value="Redo" onclick="selectRedo()">
+          <input type="button" name="undo" id="pr3__undo" value="Undo" onclick="selectUndo()" >
+          <input type="button" name="redo" id="pr3__redo" value="Redo" onclick="selectRedo()" >
           <input type="button" name="clear" id="pr3__clear" value="Clear" onclick="selectClear()">
         </td>
       </tr>
+      <div id="table__content"></div>
     </table>
   </body>
 
